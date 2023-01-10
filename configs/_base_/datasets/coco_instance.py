@@ -1,6 +1,6 @@
 # dataset settings
 dataset_type = 'CocoDataset'
-data_root = '/kaggle/input/'
+data_root = '/kaggle/'
 
 # file_client_args = dict(
 #     backend='petrel',
