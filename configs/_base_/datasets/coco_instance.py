@@ -1,6 +1,6 @@
 # dataset settings
 dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+data_root = '/kaggle/input/'
 
 # file_client_args = dict(
 #     backend='petrel',
@@ -35,8 +35,8 @@ train_dataloader = dict(
     batch_sampler=dict(type='AspectRatioBatchSampler'),
     dataset=dict(
         type=dataset_type,
-        data_root=data_root,
-        ann_file='annotations/instances_train2017.json',
+        data_root='',
+        ann_file='/kaggle/input/hik-annotations/train.json',
         data_prefix=dict(img='train2017/'),
         filter_cfg=dict(filter_empty_gt=True, min_size=32),
         pipeline=train_pipeline))
@@ -48,16 +48,16 @@ val_dataloader = dict(
     sampler=dict(type='DefaultSampler', shuffle=False),
     dataset=dict(
         type=dataset_type,
-        data_root=data_root,
-        ann_file='annotations/instances_val2017.json',
-        data_prefix=dict(img='val2017/'),
+        data_root='',
+        ann_file='/kaggle/input/hik-annotations/valid.json',
+        data_prefix=dict(img='/kaggle/input/hikcommodity-instanceseg/HIKcommodity_instanceSeg/HIKcommodity_instanceSeg/JPEGImages/'),
         test_mode=True,
         pipeline=test_pipeline))
 test_dataloader = val_dataloader
 
 val_evaluator = dict(
     type='CocoMetric',
-    ann_file=data_root + 'annotations/instances_val2017.json',
+    ann_file='/kaggle/input/hik-annotations/valid.json',
     metric=['bbox', 'segm'],
     format_only=False)
 test_evaluator = val_evaluator
